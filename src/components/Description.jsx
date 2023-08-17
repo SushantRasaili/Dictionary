@@ -9,6 +9,7 @@ const Description = ({datas}) => {
   const [definitions,setDefinitions] = useState([]);
   const [audioUrl,setAudioUrl] = useState("");  
   const [isPlaying,setIsPlaying] = useState(false);
+  const [activeIndex,setActiveIndex] = useState(0);
 
      useEffect(() => {
 
@@ -24,6 +25,7 @@ const Description = ({datas}) => {
     event.preventDefault();
         const defs = datas?.meanings[index]?.definitions;
         setDefinitions(defs);
+        setActiveIndex(index);
   }
 
   const handleAudio =(e) => {
@@ -46,7 +48,7 @@ const Description = ({datas}) => {
 
   return (
     <div className='flex flex-col px-4 pb-5 gap-2 border-gray-100 border-2 rounded-xl'
-    style={{minHeight: "20rem"}}>
+    style={{minHeight: "30rem"}}>
 
              <div className='flex flex-row items-center gap-1 mt-5'>
               {isPlaying ?
@@ -61,7 +63,7 @@ const Description = ({datas}) => {
 
             <div className='flex flex-row gap-2'>
               {datas?.meanings?.map((item,index) => 
-                <button key={index} className='text-white text-center bg-black h-8 w-20 px-2 rounded'
+                <button key={index} className={`text-center ${activeIndex===index?"bg-black text-white":"bg-gray-100 text-black"} h-8 w-20 px-2 rounded`}
                 onClick={handleClick(index)}>
                   {item?.partOfSpeech}</button>
               
@@ -71,7 +73,7 @@ const Description = ({datas}) => {
 
             <div className='flex flex-col'>
               {definitions?.map((item,index) => 
-            <p key={index}>{index&&index+1}.{item?.definition}</p>
+            <p key={index}>{index+1}.{item?.definition}</p>
               )}
             </div>
 
