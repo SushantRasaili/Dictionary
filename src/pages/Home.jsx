@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useCallback, useContext } from 'react'
 import SearchBar from '../components/SearchBar';
 import Description from '../components/Description';
 import sLogo from "../images/smallLogo.png";
 import Contacts from '../components/Contacts';
 import { useState,useEffect } from 'react';
+import { PageContext } from '../context/ContextProvider';
 
 const Home = () => {
 
   const [data,setData] = useState();
+  const {activeIndex} = useContext(PageContext);
 
 const fetchData = async() => {
   const res = await fetch('https://api.dictionaryapi.dev/api/v2/entries/en/apple');
@@ -39,11 +41,11 @@ const fetchData = async() => {
         </div>
 
         <div className='lg:w-4/6 md:w-5/6 w-11/12'>
-        <Description datas={data} />
+        <Description datas={data} indx={activeIndex} />
         </div>
 
         <div className='lg:w-4/6 md:w-5/6 w-11/12 h-44'>
-        <Contacts />
+        <Contacts datas={data} indx={activeIndex} />
         </div>
     </div>
   )

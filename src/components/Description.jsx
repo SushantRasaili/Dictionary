@@ -2,20 +2,25 @@ import React from 'react'
 import Play from "../images/CircledPlay.png"
 import Pause from "../images/PauseButton.png"
 import {useState,useEffect} from 'react';
+import { useContext } from 'react';
+import { PageContext } from '../context/ContextProvider';
 
 
-const Description = ({datas}) => {
+const Description = ({datas,indx}) => {
 
   const [definitions,setDefinitions] = useState([]);
   const [audioUrl,setAudioUrl] = useState("");  
   const [isPlaying,setIsPlaying] = useState(false);
-  const [activeIndex,setActiveIndex] = useState(0);
+  // const [activeIndex,setActiveIndex] = useState(0);
+
+  const {activeIndex,setActiveIndex} = useContext(PageContext);
 
      useEffect(() => {
 
       if(datas) {
-        setDefinitions(datas?.meanings[0]?.definitions);
+        setDefinitions(datas?.meanings[activeIndex]?.definitions);
         setAudioUrl(datas?.phonetics[0]?.audio);
+        setActiveIndex(indx)
       }
      
       },[datas]);
