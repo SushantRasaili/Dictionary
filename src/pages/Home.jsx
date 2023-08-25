@@ -32,8 +32,8 @@ const fetchData = async() => {
     <div className='flex items-center flex-col w-full gap-3'>
 
        <div className='flex items-center w-11/12 md:w-8/12 mt-2'>
-       <img src={sLogo} alt="suvaye" className='h-10 w-10'/>
-        <h3 className='font-bold ml-1'>Suvaye Dictionary</h3>
+       <img src="https://thumbs.dreamstime.com/z/logo-online-dictionary-concept-laptop-as-book-99816714.jpg" alt="suvaye" className='h-10 w-10'/>
+        <h3 className='font-bold ml-1'>English Dictionary</h3>
        </div>
 
         <div className='lg:w-4/6 md:w-5/5 w-11/12'>
